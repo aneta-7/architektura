@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rails/rails-controller-testing.git
+  revision: 24dd0199536c26370979416280260978183a0c3e
+  specs:
+    rails-controller-testing (0.1.1)
+      actionpack (~> 5.x)
+      actionview (~> 5.x)
+      activesupport (~> 5.x)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -85,6 +94,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    pg (0.17.1)
     puma (3.1.0)
     rack (2.0.0.alpha)
       json
@@ -110,6 +120,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.0.0.beta3)
       actionpack (= 5.0.0.beta3)
       activesupport (= 5.0.0.beta3)
@@ -169,8 +184,11 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
-  puma
+  pg (= 0.17.1)
+  puma (>= 3.1.0)
   rails (>= 5.0.0.beta3, < 5.1)
+  rails-controller-testing!
+  rails_12factor (= 0.0.2)
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

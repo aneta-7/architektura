@@ -3,12 +3,21 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass',       '>=3.2.0.0'
 gem 'bcrypt',               '3.1.7'
 
+gem 'rails-controller-testing', :git => 'git://github.com/rails/rails-controller-testing.git'
+
+group :production do
+  gem 'pg',             '0.17.1'
+  gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '>=3.1.0'
+end
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma'
+#gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
