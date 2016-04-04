@@ -30,12 +30,14 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     get edit_ad_url(@ad)
-    assert_response :success
+    assert_not flash.empty?
+    assert_redirected_to login_url
   end
 
   test "should update ad" do
     patch ad_url(@ad), params: { ad: { description: @ad.description, email: @ad.email, name: @ad.name, price: @ad.price, seller_id: @ad.seller_id, url_img: @ad.url_img } }
-    assert_redirected_to ad_path(@ad)
+    assert_not flash.empty?
+    assert_redirected_to login_url
   end
 
   test "should destroy ad" do

@@ -1,5 +1,8 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
+
 
   # GET /ads
   # GET /ads.json
@@ -71,4 +74,17 @@ class AdsController < ApplicationController
     def ad_params
       params.require(:ad).permit(:name, :description, :price, :seller_id, :email, :url_img)
     end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless @user == current_user
+    end
+
 end

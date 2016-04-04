@@ -2,7 +2,7 @@ aneta:
   name: Aneta Stypa
   email: astypa@gmail.com
   password_digest: <%= User.digest('password') %>
-
+  admin: true
 
 karol:
   name: Karol

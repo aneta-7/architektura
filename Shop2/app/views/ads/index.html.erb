@@ -1,37 +1,36 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "All Ads")%>
 
-<h1>Ads</h1>
+<h1>All Ads</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Seller</th>
-      <th>Email</th>
-      <th>Url img</th>
-      <th colspan="3"></th>
+	<th> Name </th>
+	<th> Price </th>
+	<th> Url img </th>
+	<th colspan ="3"/>
     </tr>
   </thead>
 
-  <tbody>
-    <% @ads.each do |ad| %>
-      <tr>
-        <td><%= ad.name %></td>
-        <td><%= ad.description %></td>
-        <td><%= ad.price %></td>
-        <td><%= ad.seller_id %></td>
-        <td><%= ad.email %></td>
-        <td><%= ad.url_img %></td>
-        <td><%= link_to 'Show', ad %></td>
-        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
-        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+
+<tbody>
+<ul class="ads">
+  <% @ads.each do |ad| %>
+    <tr>
+      <td><%= link_to ad.name, ad %></td>
+      <td><%= ad.price %></td>
+      <td><%= ad.url_img %> </td>
+      <td><%= image_tag avatar_url(ad, 50) %></td>
+      <td><%= link_to 'Show', ad %></td>
+     <% if logged_in? %>
+      <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
+      <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <% end %>   
+</tr>
+  <% end %>
+</ul>
+</tbody>
 </table>
 
-<br>
-
+<br/><br/>
 <%= link_to 'New Ad', new_ad_path %>
