@@ -4,8 +4,8 @@ class UsersController < ApplicationController
  before_action :admin_user,     only: :destroy
 
   def index
-  # @users = User.paginate(:page => params[:page], :per_page =>5)
-    @users = User.all
+   @users = User.paginate(:page => params[:page], :per_page =>5)
+  #  @users = User.all
   end
 
   def destroy
@@ -16,19 +16,30 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-   # @microposts = @user.microposts.paginate(page: params[:page])  
+    @microposts = @user.microposts.paginate(page: params[:page])  
 end
 
   def new
     @user = User.new
   end
 
+# def create
+#    @user = User.new(user_params)
+#    if @user.save
+#      @user.send_activation_email
+#      flash[:info] = "Please check your email to activate your account."
+#      redirect_to root_url
+#    else
+#      render 'new'
+#   end
+#  end
+
+
 def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      flash[:success] = "Welcome to Ads App!"
+      redirect_to @user
     else
       render 'new'
     end
