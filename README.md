@@ -1,13 +1,24 @@
-### Aneta Stypa
+## README
 
-1. Zaliczenie:
- - [x] Ads Application
- - [x] [link do wdrozonej aplikacji](https://anetashop2.herokuapp.com)
- 
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-|Wersja Ruby|Wersja Rails|Baza danych|
-|---|---|---|
-|2.3.0p0|5.0.0.beta3|SQLite|
+Things you may want to cover:
 
+* Ruby version
 
-Aplikacja sluzy do przechowywania ogloszen. Bez zalogowania mozemy jedynie zobaczyc liste ogloszen oraz ich szczegoly. Po zalogowaniu mamy mozliwosc edytowania, dodawania oraz usuwania ogloszenia.
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
