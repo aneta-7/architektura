@@ -1,7 +1,6 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+
 
 
   # GET /ads
@@ -18,12 +17,14 @@ class AdsController < ApplicationController
 
   # GET /ads/new
   def new
-    @ad = Ad.new
+    if logged_in?
+      @ad = Ad.new
+    else
+      redirect_to login_path, :notice => "This page is only avaliable to logged-in users"
   end
-
+ end
   # GET /ads/1/edit
   def edit
-    @ad = Ad.find(params[:id])
   end
 
   # POST /ads
@@ -45,27 +46,34 @@ class AdsController < ApplicationController
   # PATCH/PUT /ads/1
   # PATCH/PUT /ads/1.json
   def update
-    respond_to do |format|
-      if @ad.update(ad_params)
-        format.html { redirect_to @ad, notice: 'Ad was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ad }
-      else
-        format.html { render :edit }
-        format.json { render json: @ad.errors, status: :unprocessable_entity }
+    if logged_in?
+      respond_to do |format|
+        if @ad.update(ad_params)
+          format.html { redirect_to @ad, notice: 'Ad was successfully updated.' }
+          format.json { render :show, status: :ok, location: @ad }
+        else
+          format.html { render :edit }
+          format.json { render json: @ad.errors, status: :unprocessable_entity }
+        end
       end
-    end
+   else
+      redirect_to login_path, :notice => "This page is only available to logged-in users"
+    end    
   end
 
   # DELETE /ads/1
   # DELETE /ads/1.json
   def destroy
+   if logged_in?
     @ad.destroy
     respond_to do |format|
       format.html { redirect_to ads_url, notice: 'Ad was successfully destroyed.' }
       format.json { head :no_content }
-    end
-  end
-
+     end
+    else
+    redirect_to login_path, :notice => "This page is only abaliable to logged-in users"
+   end
+ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ad
@@ -75,18 +83,6 @@ class AdsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params
       params.require(:ad).permit(:name, :description, :price, :seller_id, :email, :url_img)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless @user == current_user
     end
 
 end
