@@ -23,6 +23,7 @@ class AdsController < ApplicationController
 
   # GET /ads/1/edit
   def edit
+    @ad = User.find(params[:id])
   end
 
   # POST /ads
